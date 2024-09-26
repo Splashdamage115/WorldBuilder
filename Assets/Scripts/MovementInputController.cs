@@ -8,6 +8,7 @@ public class MovementController : MonoBehaviour
     private Rigidbody rb; // player moveable body
     public float speed; // speed the player moves at
     private Vector3 move; // direction to move
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,9 +30,10 @@ public class MovementController : MonoBehaviour
     {
     }
 
+
     void FixedUpdate()
     {
         // move player based on chosen move
-        rb.AddForce(move * speed);
+        rb.AddForce((rb.transform.forward + move) * speed);
     }
 }
