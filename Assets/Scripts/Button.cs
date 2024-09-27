@@ -38,7 +38,7 @@ public class Button : MonoBehaviour
         }
         this.GetComponent<Transform>().position = pressedPosition; // Ensure it's at the end position
 
-        // Release
+        // button come back up
         elapsedTime = 0f;
         while (elapsedTime < animationDuration / 2)
         {
@@ -53,7 +53,7 @@ public class Button : MonoBehaviour
         canBeClicked = true;
     }
 
-    void ClickedCursor()
+    void Interacted()
     {
         if (canBeClicked)
         {
@@ -65,15 +65,19 @@ public class Button : MonoBehaviour
     [Header("Debug")]
     public bool ButtonClickedText;
     [Header("Button call Parameters")]
-    public string FunctionToCall;
-    public GameObject ObjectToCall;
+    public string[] FunctionToCall;
+    public GameObject[] ObjectToCall;
     void ClickedButton()
     {
-        if (ObjectToCall != null && FunctionToCall != null)
+        for (int i = 0; i < ObjectToCall.Length; i++)
         {
-            ObjectToCall.BroadcastMessage(FunctionToCall);
-            if(ButtonClickedText)
-                print("Button clicked");
+            if (ObjectToCall[i] != null && FunctionToCall[i] != null)
+            {
+
+                ObjectToCall[i].BroadcastMessage(FunctionToCall[i]);
+                if (ButtonClickedText)
+                    print("Button clicked");
+            }
         }
     }
 }
