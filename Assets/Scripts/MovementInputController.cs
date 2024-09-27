@@ -12,6 +12,10 @@ public class MovementController : MonoBehaviour
     public float speed; // speed the player moves at
     public Transform orientation;
     private Vector3 move; // direction to move
+    [Range(0f, 10f)]
+    public float interactRange;
+
+    public Camera gameCam;
 
     private bool grounded;
     // Start is called before the first frame update
@@ -55,5 +59,19 @@ public class MovementController : MonoBehaviour
     {
         // move player based on chosen move
         rb.AddForce(move.normalized * speed * 10f, ForceMode.Force);
+    }
+
+    void OnInteract(InputValue _)
+    {
+        RaycastHit hit;
+        Ray ray = gameCam.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            Transform objectHit = hit.transform;
+
+            if(Vector3.Distance(transform.position, objectHit.position) <= interactRange)
+                objectHit.SendMessage("ClickedCursor", null, SendMessageOptions.DontRequireReceiver);
+        }
     }
 }
