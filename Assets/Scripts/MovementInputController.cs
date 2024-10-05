@@ -22,6 +22,7 @@ public class MovementController : MonoBehaviour
 
         move.x = movementVector.x;
         move.z = movementVector.y;
+        move = rb.transform.TransformDirection(move);
         move.y = 0f;
     }
 
