@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ActivationScript : MonoBehaviour
 {
-    void Activate()
+    void Activate(bool activate = true)
     {
         ParticleSystem p = GetComponent<ParticleSystem>();
-        if (p.isStopped)
+        if (p.isStopped || activate)
         {
             p.Play();
         }

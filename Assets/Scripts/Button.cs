@@ -74,7 +74,7 @@ public class Button : MonoBehaviour
             if (ObjectToCall[i] != null && FunctionToCall[i] != null)
             {
 
-                ObjectToCall[i].BroadcastMessage(FunctionToCall[i]);
+                ObjectToCall[i].BroadcastMessage(FunctionToCall[i], false);
                 if (ButtonClickedText)
                     print("Button clicked");
             }

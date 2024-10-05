@@ -29,11 +29,11 @@ public class MovementController : MonoBehaviour
     {
         Vector2 movementVector = movementValue.Get<Vector2>();
 
-        //move.x = movementVector.x;
-        //move.z = movementVector.y;
-        //move = rb.transform.TransformDirection(move);
-        
-        move = orientation.forward * movementVector.y + orientation.right * movementVector.x;
+        move.x = movementVector.x;
+        move.z = movementVector.y;
+        move = rb.transform.TransformDirection(move);
+
+        //move = orientation.forward * movementVector.y + orientation.right * movementVector.x;
         move.y = 0f;
     }
 
